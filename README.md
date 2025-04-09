@@ -24,3 +24,8 @@ preds <- porpoiseProb.xgb(pal.sample)
 THRESH = 0.8
 pal.filtered = pal.sample[preds >=0.8,]
 ```
+
+Note that this is a machine learning approach that does not guarantee that all data will be classified correctly. 
+Notably, the less similar your data is from the original training data of the model, the higher the chance for misclassifications.
+Thus, it is highly recommended to check the performance of the model on your data: Annotate part of your data manually, run the model and check the accuracy, sensitivity and specificity. 
+In case the pre-trained model does not perform satisfactory, you can annotate part of your data manually and train your own ML model on that data.
