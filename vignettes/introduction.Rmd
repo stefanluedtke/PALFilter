@@ -1,0 +1,31 @@
+---
+title: "Introduction to the PALFilter package"
+author: "Stefan Luedtke"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Introduction to the PALFilter package}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(PALFilter)
+
+#use the trained XGBoost model to predict probabilities for each sample
+#(click train) of coming from a porpoise (and not from a PAL)
+data(pal.sample)
+preds <- porpoiseProb.xgb(pal.sample)
+
+#we can use these probabilities, for example, to only keep samples that
+#are porpoises with a high probability
+THRESH = 0.8
+pal.filtered = pal.sample[preds >=0.8,]
+
+```
